@@ -45,6 +45,32 @@ public class Company {
 				}
 				else if(userInput == 7) {
 					System.out.println("You have selected to add an Enemy into the Enemy table. Please wait...");
+					// SEE NOTES BELOW
+					// NOTE: I just started with possibly inputting values above, but change it if youd like. 
+					// NOTE: Also I have not tested this part so idk if it even runs. I just quickly wrote it so we had a start
+					// NOTE: tyler small pp
+
+					/* Scanner enemyScans = new Scanner(System.in);
+					System.out.println("Enemy ID?");
+					int EnemyID = scan.nextInt();
+					System.out.println("Enemy Name?");
+					String EnemyName = scan.nextLine();
+					System.out.println("Enemy HP?");
+					int EnemyHP = scan.nextInt();
+					System.out.println("Enemy Souls?");
+					int EnemySouls = scan.nextInt();
+					System.out.println("Enemy Weakness?");
+					String EnemyWeakness = scan.nextLine();
+					System.out.println("Enemy Resistance?");
+					String EnemyResistance = scan.nextLine();
+					System.out.println("Enemy Immunity?");
+					String EnemyImmunity = scan.nextLine();
+					System.out.println("Enemy Boss (yes/no)?");
+					String EnemyBoss = scan.nextLine();
+					Enemy e = new Enemy(EnemyID, EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss);
+					insertEnemy(e);
+					enemyScans.close(); */
+					
 					//add enemy method
 				}
 				else if(userInput == 8) {
