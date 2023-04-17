@@ -1,0 +1,2210 @@
+CREATE TABLE Loot( 
+
+    [LootID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+
+    [LootName] NVARCHAR(40) NOT NULL, 
+
+    [LootType] NVARCHAR(40) 
+
+); 
+
+  
+
+CREATE TABLE Enemy( 
+
+    [EnemyID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+
+    [EnemyName] NVARCHAR(80) NOT NULL, 
+
+    [EnemyHP] INTEGER, 
+
+    [EnemySouls] INTEGER, 
+
+    [EnemyWeakness] NVARCHAR(40), 
+
+    [EnemyResistance] NVARCHAR(40), 
+
+    [EnemyImmunity] NVARCHAR(40), 
+
+    [EnemyBoss] NVARCHAR(10) NOT NULL 
+
+); 
+
+  
+
+CREATE TABLE Location( 
+
+    [LocationID] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+
+    [LocationName] NVARCHAR(80) NOT NULL, 
+
+    [LocationBonfires] INTEGER, 
+
+    [LocationRecLevel] INTEGER, 
+
+    [LocationHasBoss] NVARCHAR(10) NOT NULL 
+
+); 
+
+  
+
+CREATE TABLE Drops( 
+
+    [EnemyID] INTEGER NOT NULL, 
+
+    [LootID] INTEGER NOT NULL, 
+
+    CONSTRAINT fk_enemy_drops FOREIGN KEY (EnemyID) REFERENCES Enemy(EnemyID), 
+
+    CONSTRAINT fk_loot_drops FOREIGN KEY (LootID) REFERENCES Loot(LootID) 
+
+); 
+
+  
+
+CREATE TABLE Patrols( 
+
+    [EnemyID] INTEGER NOT NULL, 
+
+    [LocationID] INTEGER NOT NULL, 
+
+    CONSTRAINT fk_enemy_patrols FOREIGN KEY (EnemyID) REFERENCES Enemy(EnemyID), 
+
+    CONSTRAINT fk_location_patrols FOREIGN KEY (LocationID) REFERENCES Location(LocationID) 
+
+); 
+
+ 
+
+-- Loot Entries 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dragon Head Stone', 'Tool'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Titanite Chunk', 'Ore'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Titanite Scale', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Twinkling Titanite', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Titanite Slab', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Large Titanite Shard', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Blessed Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Winged Knight Twinaxe', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Winged Knight Halberd', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Mossfruit', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ember', 'Multiplayer Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Black Knight Helm', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Black Knight Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Black Knight Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Black Knight Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Black Knight Shield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Black Knight Greatsword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Black Knight Greataxe', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Outrider Knight Helm', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Outrider Knight Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Outrider Knight Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Outrider Knight Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Irithyll Rapier', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Irithyll Straight Sword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Fading Soul', 'Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lightning Stake', 'Miracle'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Undead Bone Shard', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Carthus Shotel', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Kukri', 'Projectile'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Sharp Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Vertebrae Shackle', 'Multiplayer Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Yellow Bug Pellet', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Evangelist Robe', 'Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Evangelist Trousers', 'Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Evangelist Hat', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Evangelist Gloves', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Spiked Mace', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dorhys Gnawing', 'Miracle'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Warden Twinblades', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Grave Warden Hood', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Grave Warden Robe', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Grave Warden Skirt', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Grave Warden Wrap', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Bloodred Moss Clump', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Titanite Shard', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Cathedral Knight Helm', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Cathedral Knight Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Cathedral Knight Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Cathedral Knight Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Great Mace', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Cathedral Knight Greatshield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Heavy Crossbow', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Shriving Stone', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Great Corvian Scythe', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Storyteller Staff', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Hollow Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Corvian Greatknife', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Logan Scroll', 'Key Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Raw Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Heavy Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Crystal Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Fire Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Chaos Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Simple Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Refined Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Crystal Scroll', 'Key Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Cracked Red Eye Orb', 'Multiplayer Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dark Mask', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dark Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dark Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dark Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dark Sword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pale Tongue', 'Multiplayer Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Red Eye Orb', 'Multiplayer Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Deep Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Human Dregs', 'Multiplayer Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Aldrich Sapphire', 'Ring'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Aldrich Ruby', 'Ring'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of a Demon', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Flame Fan', 'Pyromancy'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Desert Pyromancer Hood', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Desert Pyromancer Garb', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Desert Pyromancer Gloves', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Desert Pyromancer Skirt', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Deacon Robe', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Deacon Skirt', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Drakeblood Greatsword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Black Bow of Pharis', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pharis Hat', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Stone Greatshield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Poison Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Deserter Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Deserter Trousers', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Long Sword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Iron Round Shield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Spear', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Wooden Shield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Halberd', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Greataxe', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Steel Soldier Helm', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Standard Bolt', 'Ammunition'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Firebomb', 'Projectile'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Follower Helm', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Follower Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Follower Gloves', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Follower Boots', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Fire Witch Helm', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Fire Witch Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Fire Witch Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Fire Witch Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Immolation Tinder', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Gargoyle Flame Hammer', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Gargoyle Flame Spear', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Rotten Ghru Dagger', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Blue Bug Pellet', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Wolf Blood Swordgrass', 'Multiplayer Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Rotten Ghru Spear', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Rotten Ghru Curved Sword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ghru Rotshield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Black Bug Pellet', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Rotten Pine Resin', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lingering Dragoncrest Ring', 'Ring'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Great Swamp Ring', 'Ring'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Human Pine Resin', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dung Pie', 'Projectile'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Scholar Robe', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Scholar Shed Skin', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Scholar Candlestick', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Carthus Curved Greatsword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Carthus Curved Sword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Carthus Shield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Carthus Rouge', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dark Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Harald Legion Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Harald Legion Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Harald Legion Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Havel Greatshield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dragon Tooth', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Broken Straight Sword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dagger', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Throwing Knife', 'Projectile'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Great Machete', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Thrall Hood', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Thrall Axe', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Flameberge', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Claymore', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Blood Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Iron Dragonslayer Helm', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Iron Dragonslayer Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Iron Dragonslayer Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Iron Dragonslayer Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soldering Iron', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Aristocrat Mask', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Jailer Robe', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Jailer Gloves', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Jailer Trousers', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Divine Blessing', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Hidden Blessing', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Purple Moss Clump', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Blooming Purple Moss Clump', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Rime-Blue Moss Clump', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Knight Helm', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Knight Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Knight Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Knight Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Knight Crossbow', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pike', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Butcher Knife', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Undead Hunter Charm', 'Projectile'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Duel Charm', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Mendicant Staff', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Estus Flask', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ashen Estus Flask', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Deep Battle Axe', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Deep Braille Divine Tome', 'Key Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Black Blade', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Golden Ritual Spear', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dark Clutch Ring', 'Ring'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dragonslayer Lightning Arrow', 'Ammunition'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Rusted Gold Coin', 'Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Greatshield of Glory', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Court Sorcerer Staff', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Sunlight Straight Sword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ring of the Evil Eye', 'Ring'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Estus Shard', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Falchion', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Scimitar', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Eleonora', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lothric Knight Sword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lothric Knight Greatsword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lothric Knight Greatshield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lothric Knight Shield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lothric Knight Helm', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lothric Knight Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lothric Knight Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lothric Knight Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Worker Hat', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Worker Garb', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Worker Gloves', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Worker Trousers', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Four-Pronged Plow', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Charcoal Pine Bundle', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Charcoal Pine Resin', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Rubbish', 'Tool'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pontiff Knight Curved Sword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pontiff Knight Great Scythe', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pontiff Knight Shield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pontiff Knight Crown', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pontiff Knight Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pontiff Knight Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pontiff Knight Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ricard Rapier', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Large Soul of a Deserted Corpse', 'Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of a Deserted Corpse', 'Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Bloodbite Ring', 'Ring'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of an Unknown Traveler', 'Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ringed Knight Hood', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ringed Knight Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ringed Knight Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ringed Knight Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Filianore Spear Ornament', 'Tool'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ringed Knight Paired Greatswords', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Lightning Gem', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Green Blossom', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Budding Green Blossom', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Silver Knight Helm', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Silver Knight Armor', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Silver Knight Gauntlets', 'Gauntlets'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Silver Knight Leggings', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Silver Knight Shield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Proof of a Concord Kept', 'Multiplayer Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dragonslayer Greatbow', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Dragonslayer Greatarrow', 'Ammunition'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Bonewheel Shield', 'Shield'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pontiffs Right Eye', 'Ring'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Ring of Favor', 'Ring'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Alluring Skull', 'Projectile'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Tailbone Spear', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Pale Pine Resin', 'Consumable'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Tailbone Short Sword', 'Weapon'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Coiled Sword', 'Tool'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of Boreal Valley Vordt', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Transposing Kiln', 'Upgrade Material'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of the Rotted Greatwood', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of a Crystal Sage', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of the Blood of the Wolf', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Cinders of a Lord', 'Key Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of the Deacons of the Deep', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Small Doll', 'Key Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Archdeacon White Crown', 'Helm'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Archdeacon Holy Garb', 'Chest Armor'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Archdeacon Skirt', 'Leggings'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of High Lord Wolnir', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of the Old Demon King', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of Pontiff Sulyvahn', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of Yhorm the Giant', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of Aldrich', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of the Dancer', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of Dragonslayer Armour', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of Consumed Oceiros', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of Champion Gundyr', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of the Twin Princes', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of the Nameless King', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of the Lords', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of Darkeater Midir', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Spears of the Church', 'Covenant'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of the Demon Prince', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of Sister Friede', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of Slave Knight Gael', 'Boss Soul'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Blood of the Dark Soul', 'Key Item'); 
+
+INSERT INTO Loot(LootName, LootType) VALUES ('Soul of a Stray Demon', 'Boss Soul'); 
+
+ 
+
+-- Enemy Entries 
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Ancient Wyvern', NULL, 0, 'Lightning', 'Standard', 'None', 'No');   
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Ascended Winged Knight', 2460, 13000, 'Dark', 'Standard', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Basilisk', 400, 120, 'Bleed', 'None', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Black Knight', 1200, 2000, 'Dark', 'Thrust', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Boreal Outrider Knight', 2330, 15000, 'Dark', 'Frost', 'Toxic/Poison', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Caged Hollow', 135, 40, 'Thrust', 'Slash', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Carthus Sandworm', 3180, 6000, 'Magic', 'Lightning', 'Frost', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Carthus Swordsman', NULL, 450, 'Blessed', 'Dark', 'Status Effects', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Cathedral Evangelist', 657, 380, 'Frost', 'Fire', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Cathedral Grave Warden', 707, 750, 'Fire', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Cathedral Knight', 556, 550, 'Lightning', 'Bleed', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Corvian', 359, 90, 'Fire', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Corvian Knight', NULL, 0, 'Frost', 'Bleed', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Corvian Settler', 442, 0, 'Fire', 'Frost', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Corvian Storyteller', 359, 360, 'None', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Court Sorcerer', 1136, 4000, 'None', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Crystal Lizard', 373, 0, 'Fire', 'Magic', 'Status Effects', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Crystal Sage', 4090, 22000, 'Poison/Toxic', 'Magic', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Darkwraith', 692, 2500, 'Hollowslayer Greatsword', 'Dark', 'Poison', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Deacon of the Deep', 951, 600, 'Hollowslayer Greatsword', 'Magic', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Deep Accursed', 800, 1500, 'Fire', 'None', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Demon', 2982, 5000, 'Dark', 'Fire', 'Bleed', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Desert Pyromancer Zoey', NULL, 0, 'Fire', 'Frost', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Devout Hollow', 320, 70, 'Hollowslayer Greatsword', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Devout of the Deep', 670, 2700, 'Physical', 'Magic', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Drakeblood Knight', 1300, 4000, 'None', 'None', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Elder Ghru', 830, 7681, 'Fire', 'Blunt', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Elite Hollow Soldier', 320, 650, 'Hollowslayer Greatsword', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Farron Follower', 750, 700, 'Hollowslayer Greatsword', 'Frostbite', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Fire Witch', 792, 1800, 'Dark', 'Physical', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Gargoyle', NULL, 2500, 'Magic', 'Fire', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Ghru Conjurator', 436, 350, 'Fire', 'None', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Ghru Grunt', NULL, 0, 'Fire', 'None', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Ghru Leaper', NULL, 0, 'None', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Giant Crab', 1058, 800, 'Fire', 'Slash', 'Bleed', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Giant Fly', 440, 0, 'Fire', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Giant Serpent-Man', 1853, 3600, 'Lightning', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Giant Slave', 1050, 16000, 'Strike', 'Magic', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Grand Archives Scholar', 871, 2700, 'Fire', 'Magic', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Grave Warden', 88, 20, 'Hollowslayer Greatsword', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Grave Warden Skeleton', 582, 320, 'Blessed', 'Fire', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Grotesque Londor Grower', 808, 5000, 'Dark', 'None', 'Alluring Skull', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Harald Legion Knight', 5457, 5800, 'Farron Greatsword', 'Dark', 'Frostbite', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Havel Knight', 2048, 4000, 'Bleed', 'Fire', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Hollow', 68, 30, 'Hollowslayer Greatsword', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Hollow Assassin', 430, 400, 'Hollowslayer Greatsword', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Hollow Cleric', 996, 1400, 'Hollowslayer Greatsword', 'Dark', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Hollow Manservant', 551, 320, 'None', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Hollow Priest', 900, 1900, 'Hollowslayer Greatsword', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Hollow Slave', 379, 80, 'Toxic', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Hollow Soldier', 320, 80, 'Hollowslayer Greatsword', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Infested Corpse', 391, 500, 'Fire', 'Slash', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Irithyllian Slave', 512, 300, 'Fire', 'Thrust', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Iron Dragonslayer', 4154, 64000, 'Magic', 'Lightning', 'Bleed', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Jailer', 720, 700, 'Lightning', 'Magic', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Judicator', 2200, 4000, 'Dark', 'Slash', 'Frostbite', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Giant Hollow Soldier', 357, 80, 'Hollowslayer Greatsword', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Lesser Crab', 100, 36, 'None', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Lothric Knight', 1289, 4000, 'Lightning', 'Fire', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Lothric Wyvern', 2440, 0, 'Lightning', 'Fire', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Lycanthrope', 816, 350, 'Bleed', 'Lightning', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Lycanthrope Hunter', 294, 150, 'Fire', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Mad Ghru', 635, 600, 'Fire', 'None', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Mad Woman', 660, 1500, 'Frost', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Corpse Grub', 680, 600, 'Fire', 'Strike', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Man-Grub', NULL, 121, 'Fire', 'None', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Man-serpent Summoner', 530, 2400, 'Lightning', 'Magic', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Millwood Chieftain', 2330, 0, 'Dark', 'Fire', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Millwood Knight', 1824, 1600, 'Dark', 'Fire', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Mimic', 458, 4000, 'Dark', 'Slash', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Skeleton', NULL, 0, 'Strike', 'Fire', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Monstrosity of Sin', 3946, 2700, 'Bleed', 'None', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Murkman', NULL, 0, 'Strike', 'Dark', 'Bleed', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Overgrown Lothric Knight', 2153, 3060, 'Poison/Toxic', 'Bleed', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Peasant Hollow', 121, 60, 'Fire', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Poisonhorn Bug', 192, 40, 'Fire', 'None', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Pontiff Knight', 621, 900, 'Dark', 'Frost', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Pus of Man', 1937, 2500, 'Farron Greatsword', 'Dark', 'Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Rapier Champion', NULL, 4000, 'Bleed', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Rat', 239, 60, 'Fire', 'Poison/Toxic', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Ravenous Crystal Lizard', 2019, 10000, 'Fire', 'Magic', 'Frost', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Reanimated Corpse', 391, 180, 'Fire', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Ringed Knight', 3298, 0, 'Dark', 'Bleed', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Rock Lizard', 670, 150, 'Magic', 'Slash', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Root Skeleton', 148, 50, 'Blessed', 'Thrust', 'Magic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Rotten Flesh of Aldrich', 200, 0, 'Fire', 'Physical', 'Frostbite', 'No'); 
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Rotten Slug', 265, 30, 'Fire', 'Dark', 'Poison/Toxic', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Serpent-Man', 590, 3000, 'Frostbite', 'Fire', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Sewer Centipede', 490, 750, 'Fire', 'Thrust', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Silver Knight', 1099, 2500, 'Dark', 'Fire', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Demon Cleric', 1425, 900, 'Bleed', 'Fire', 'Rapport', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Smoldering Rotten Flesh', 200, 60, 'Lightning', 'Physical', 'Fire', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Starved Hound', 450, 180, 'Hollowslayer Greatsword', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Sulyvahns Beast', 2721, 12000, 'Bleed', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Tree Woman', 1207, 0, 'Fire', 'Lightning', 'Bleed', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Winged Knight', 1733, 2860, 'Dark', 'Strike', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Wolf', 491, 0, 'Fire', 'None', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Wretch', 496, 250, 'Lightning', 'Poison/Toxic', 'None', 'No');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Ludex Gundyr', 1037, 3000, 'Bleed', 'Dark', 'Poison', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Abyss Watchers', 1548, 18000, 'Lightning', 'Dark', 'Poison', 'Yes'); 
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Aldrich Devourer of Gods', 4727, 50000, 'Lightning', 'Magic', 'Poison/Toxic', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Champion Gundyr', 4956, 60000, 'Strike', 'Slash', 'None', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Crystal Sage', 2723, 8000, 'Physical', 'Magic', 'None', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Curse-Rotted Greatwood', 5405, 7000, 'Slash', 'None', 'Poison/Toxic', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Dancer of the Boreal Valley', 5111, 60000, 'Dark', 'Bleed', 'Poison/Toxic', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Darkeater Midir', 15860, 150000, 'Lightning', 'Dark', 'Poison/Toxic', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Deacons of the Deep', 4099, 13000, 'Frostbite', 'Dark', 'None', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Demon In Pain', 7062, 50000, 'Bleed', 'Fire', 'Frostbite', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Demon from Below', 7062, 50000, 'Bleed', 'Fire', 'Frostbite', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Demon Prince', 7045, 100000, 'Bleed', 'Fire', 'Frost', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Dragonslayer Armour', 4581, 48000, 'Frost', 'Dark', 'Poison/Toxic', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Halflight, Spear of the Church', 3350, 80000, 'Lightning', 'Bleed', 'None', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('High Lord Wolnir', 15041, 22000, 'Strike', 'Dark', 'Bleed', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Lothric, Younger Prince', 5799, 85000, 'Lightning', 'Dark', 'Poison', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Lorian, Elder Prince', 7730, 85000, 'Frost', 'Dark', 'Poison/Toxic', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Nameless King', 7100, 80000, 'Lightning', 'Poison/Toxic', 'None', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Oceiros the Consumed King', 8087, 58000, 'Lightning', 'Magic', 'Poison/Toxic', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Old Demon King', 5301, 25000, 'Dark', 'Fire', 'Bleed', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Pontiff Sulyvahn', 5106, 28000, 'Thrust', 'Poison/Toxic', 'None', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Sister Friede', 18877, 72000, 'Strike', 'Magic', 'Frostbite', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Slave Knight Gael', 15037, 120000, 'Strike', 'Slash', 'None', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Soul of Cinder', 10766, 100000, 'Lightning', 'Fire', 'Poison/Toxic', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Stray Demon', 2004, 5000, 'Dark', 'Lightning', 'Poison/Toxic', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Vordt of the Boreal Valley', 1328, 3000, 'Dark', 'Thrust', 'Frost', 'Yes');  
+
+INSERT INTO Enemy(EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES ('Yhorm the Giant', 27822, 36000, 'Lightning', 'Thrust', 'Bleed', 'Yes'); 
+
+ 
+
+-- Location Entries 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Anor Londo', 4, 55, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Archdragon Peak', 4, 95, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Catacombs of Carthus', 3, 35, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Cathedral of the Deep', 5, 30, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Cemetary of Ash', 2, 1, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Church of Yorshka', 1, 45, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Consumed Kings Garden', 1, 65, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Farron Keep', 5, 30, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Firelink Shrine', 1, 1, 'No'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Grand Archives', 2, 65, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('High Wall of Lothric', 4, 1, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Irithyll Dungeon', 2, 50, 'No'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Irithyll of the Boreal Valley', 9, 45, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Kiln of the First Flame', 2, 60, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Lothric Castle', 5, 75, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Painted World of Ariandel', 8, 60, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Profaned Capital', 2, 55, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Road of Sacrifices', 9, 30, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Smouldering Lake', 4, 40, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('The Dreg Heap', 4, 80, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('The Ringed City', 8, 80, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Undead Settlement', 5, 22, 'Yes'); 
+
+INSERT INTO Location(LocationName, LocationBonfires, LocationRecLevel, LocationHasBoss) VALUES ('Untended Graves', 2, 70, 'Yes'); 
+
+  
+
+-- Drops entries 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (1, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (1, 3); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (1, 4); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (2, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (2, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (2, 7); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (2, 8); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (2, 9); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (3, 10); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (4, 11); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (4, 12); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (4, 13); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (4, 14); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (4, 15); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (4, 16); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (4, 17); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (4, 18); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (5, 24); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (5, 23); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (5, 19); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (5, 20); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (5, 21); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (5, 22); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (6, 25); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (7, 26); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (7, 27); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (8, 28); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (8, 29); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (8, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (8, 30); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (8, 31); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (8, 32); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (8, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (9, 33); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (9, 34); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (9, 35); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (9, 36); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (9, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (9, 37); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (9, 7); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (9, 38); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (10, 39); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (10, 40); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (10, 41); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (10, 42); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (10, 43); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (10, 44); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (10, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (10, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (10, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 46); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 47); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 48); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 49); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 50); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 51); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 11); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (11, 52); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (12, 53); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (12, 54); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (12, 55); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (12, 56); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (12, 57); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (13, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (13, 30); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (13, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (15, 55); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (15, 56); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (15, 7); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (16, 58); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 4); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 59); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 30); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 60); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 61); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 62); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 63); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 64); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 3); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (17, 65); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (18, 66); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (19, 67); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (19, 68); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (19, 69); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (19, 70); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (19, 71); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (19, 72); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (19, 73); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (19, 74); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (20, 85); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (20, 86); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (20, 75); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (20, 76); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (21, 77); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (21, 78); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (22, 79); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (22, 62); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (23, 80); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (23, 81); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (23, 82); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (23, 83); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (23, 84); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (25, 85); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (25, 86); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (25, 76); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (25, 75); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (26, 87); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (27, 88); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (27, 89); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (27, 90); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (27, 91); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (27, 11); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (27, 60); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 100); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 92); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 93); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 59); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 101); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 102); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 95); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 94); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 97); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 96); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 98); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (28, 99); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (29, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (29, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (29, 103); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (29, 104); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (29, 105); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (29, 106); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (30, 107); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (30, 108); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (30, 109); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (30, 110); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (30, 111); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (30, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (31, 112); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (31, 113); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (32, 114); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (32, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (32, 60); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (32, 115); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (32, 116); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (33, 117); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (33, 114); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (33, 118); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (33, 119); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (33, 120); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (33, 91); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (33, 116); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (33, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (33, 60); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (33, 121); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (35, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (35, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (35, 122); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (35, 61); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (35, 123); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (36, 124); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (38, 125); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (38, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (39, 126); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (39, 127); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (39, 128); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (39, 61); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (40, 25); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (41, 129); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (41, 130); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (41, 131); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (41, 132); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (41, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (41, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (41, 30); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (41, 31); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (41, 11); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (42, 4); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (43, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (43, 133); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (43, 134); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (43, 135); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (43, 136); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (44, 138); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (44, 137); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (45, 139); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (45, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (45, 59); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (46, 140); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (46, 93); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (46, 141); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (46, 59); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (46, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (46, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (47, 4); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (47, 7); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (48, 142); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (48, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (49, 7); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (50, 143); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (50, 144); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (50, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (50, 145); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 100); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 92); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 93); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 59); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 139); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 101); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 94); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 102); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 95); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 97); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 98); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (51, 99); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (53, 146); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (53, 115); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (53, 147); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (54, 148); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (54, 149); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (54, 150); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (54, 151); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (55, 152); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (55, 153); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (55, 154); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (55, 155); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (55, 156); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (55, 64); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (56, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (56, 157); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (56, 158); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (57, 99); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (57, 98); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (57, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (57, 59); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (58, 44); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (58, 159); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (58, 160); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (58, 161); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 193); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 194); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 195); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 196); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 192); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 191); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 189); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 166); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 11); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 65); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 223); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 162); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 163); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 164); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (59, 165); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (60, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (61, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (61, 11); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (62, 167); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (63, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (63, 60); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (63, 115); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (63, 116); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (64, 168); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (66, 169); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (66, 170); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (67, 171); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (67, 172); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (67, 173); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (68, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (68, 60); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (69, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (69, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (69, 60); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (69, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 174); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 175); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 176); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 177); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 185); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 178); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 3); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 179); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 180); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 181); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 182); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 183); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (70, 184); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (71, 186); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (71, 187); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (72, 125); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (72, 188); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (73, 75); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (73, 76); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 65); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 11); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 189); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 190); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 191); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 192); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 193); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 194); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 195); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (74, 196); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 197); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 198); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 199); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 200); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 201); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 62); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 102); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 202); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 203); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (75, 204); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (76, 121); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (77, 205); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (77, 206); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (77, 207); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (77, 208); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (77, 209); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (77, 210); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (77, 211); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (77, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (78, 133); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (78, 11); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (78, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (78, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (78, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (79, 212); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (80, 213); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (80, 214); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (80, 215); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (80, 216); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (81, 3); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (83, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (83, 3); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (83, 11); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (83, 217); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (83, 218); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (83, 219); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (83, 220); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (83, 221); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (83, 222); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (83, 5); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (84, 4); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (84, 3); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (85, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (87, 60); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (87, 91); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (87, 133); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (88, 2); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (88, 223); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (88, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (89, 224); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (89, 225); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (90, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (90, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (90, 226); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (90, 227); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (90, 228); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (90, 229); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (90, 230); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (90, 231); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (90, 232); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (90, 233); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (91, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (91, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (91, 63); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (94, 235); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (94, 236); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (95, 237); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (96, 8); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (96, 9); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (96, 45); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (96, 7); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (96, 6); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (97, 10); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (98, 238); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (98, 239); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (98, 240); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (98, 3); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (99, 241); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (100, 246); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (100, 247); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (101, 247); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (101, 257); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (101, 11); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (102, 261); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (103, 245); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (104, 243); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (104, 244); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (105, 258); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (106, 265); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (106, 266); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (107, 248); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (107, 250); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (107, 251); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (107, 252); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (107, 249); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (107, 75); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (108, 267); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (109, 267); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (110, 267); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (111, 259); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (112, 221); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (112, 5); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (113, 253); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (114, 262); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (114, 247); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (115, 262); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (115, 247); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (116, 263); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (117, 260); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (118, 254); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (119, 255); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (120, 268); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (120, 5); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (121, 270); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (121, 269); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (122, 264); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (123, 271); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (124, 242); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (125, 256); 
+
+INSERT INTO Drops(EnemyID, LootID) VALUES (125, 247); 
+
+ 
+
+-- Patrols Entries 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(1, 2); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(2, 10); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(3, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(3, 19); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(3, 12); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(4, 19); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(4, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(4, 23); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(5, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(5, 10); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(5, 15); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(6, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(6, 12); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(7, 19); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(8, 3); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(9, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(9, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(9, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(10, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(10, 23); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(11, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(11, 7); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(12, 10); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(12, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(13, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(14, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(15, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(15, 10); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(15, 23); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(16, 17); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 9); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 3); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 19); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 12); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 17); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 15); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 10); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(17, 2); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(18, 10); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(19, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(19, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(20, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(20, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(20, 1); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(21, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(21, 1); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(22, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(22, 3); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(23, 20); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(24, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(25, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(26, 2); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(27, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(28, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(28, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(29, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(30, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(31, 17); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(32, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(33, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(34, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(35, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(35, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(35, 19); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(35, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(36, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(37, 2); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(38, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(39, 10); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(40, 5); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(40, 9); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(41, 3); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(42, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(43, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(44, 2); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(45, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(45, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(46, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(46, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(46, 15); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(47, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(48, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(49, 15); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(50, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(51, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(51, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(52, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(52, 12); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(53, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(54, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(55, 12); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(56, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(57, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(58, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(58, 3); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(59, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(59, 15); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(59, 10); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(60, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(61, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(61, 12); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(62, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(63, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(64, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(65, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(65, 12); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(66, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(66, 10); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(67, 2); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(68, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(69, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(70, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(70, 3); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(70, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(70, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(70, 12); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(70, 17); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(70, 15); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(70, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(71, 3); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(72, 17); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(73, 20); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(74, 20); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(75, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(76, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(77, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(78, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(78, 7); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(79, 2); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(80, 3); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(80, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(80, 19); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(81, 5); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(81, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(81, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(81, 23); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(82, 12); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(82, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(83, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(84, 2); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(85, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(86, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(86, 3); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(86, 19); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(86, 1); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(87, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(87, 7); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(88, 2); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(89, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(90, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(90, 1); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(91, 19); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(92, 19); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(93, 5); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(93, 9); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(93, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(93, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(93, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(93, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(93, 23); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(94, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(95, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(96, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(96, 15); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(97, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(98, 12); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(99, 5); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(100, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(101, 1); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(102, 23); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(103, 18); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(104, 22); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(105, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(106, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(107, 4); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(108, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(109, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(110, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(111, 15); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(112, 21); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(113, 3); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(114, 15); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(115, 15); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(116, 2); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(117, 7); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(118, 19); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(119, 13); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(120, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(121, 16); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(122, 14); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(123, 8); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(124, 11); 
+
+INSERT INTO Patrols(EnemyID, LocationID) VALUES(125, 17); 
+
+
+-- Drop it like its hot
+/*
+DROP TABLE Enemy;
+DROP TABLE Location;
+DROP TABLE Loot;
+DROP TABLE Drops;
+DROP TABLE Patrols;
+/*
+
