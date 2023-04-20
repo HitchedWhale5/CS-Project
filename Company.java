@@ -58,6 +58,13 @@ public class Company {
 				db.insertEnemy(e);
 
 			}else if(menuSelection == 8){
+
+				System.out.println("What enemy would you like to change?");
+				System.out.println("Enter Enemy ID: ");
+				int id = scan.nextInt();
+				System.out.println("Enter new health: ");
+				int hp = scan.nextInt();
+				db.updateEnemyHP(id, hp);
 				
 			}else if(menuSelection == 9){
 				System.out.print("Insert EnemyID : ");
@@ -67,7 +74,6 @@ public class Company {
 				db.deleteEnemy(input);
 			}
 
-			System.out.println(menuSelection);
 		}while (menuSelection != 10);
 		
 		/* try {
