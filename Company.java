@@ -48,7 +48,6 @@ public class Company {
 					// SEE NOTES BELOW
 					// NOTE: I just started with possibly inputting values above, but change it if youd like. 
 					// NOTE: Also I have not tested this part so idk if it even runs. I just quickly wrote it so we had a start
-					// NOTE: tyler small pp
 
 					/* Scanner enemyScans = new Scanner(System.in);
 					System.out.println("Enemy ID?");
