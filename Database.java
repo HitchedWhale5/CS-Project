@@ -75,13 +75,12 @@ public class Database {
 		System.out.println("Number of rows affected: " + numRowsAffected);
 	}
 	
-	public void updateEnemyHP(Enemy e, int EnemyHP) throws SQLException {
+	public void updateEnemyHP(int enemyID, int EnemyHP) throws SQLException {
 		String sql = "UPDATE Enemy SET EnemyHP = ? WHERE EnemyID = ?";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setInt(1, EnemyHP);
-		stmt.setInt(2, e.getEnemyID());
+		stmt.setInt(2, enemyID);
 		stmt.executeUpdate();
-		e.getEnemyHP();
 	}
 	
 	public boolean deleteEnemy(int e) throws SQLException {
@@ -92,4 +91,20 @@ public class Database {
 		return numRowsAffected > 0;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
