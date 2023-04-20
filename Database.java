@@ -62,16 +62,15 @@ public class Database {
 	}
 
 	public void insertEnemy(Enemy e) throws SQLException {
-		String sql = "INSERT INTO Enemy (EnemyID, EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Enemy (EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setInt(1, e.getEnemyID());
-		stmt.setString(2, e.getEnemyName());
-		stmt.setInt(3, e.getEnemyHP());
-		stmt.setInt(4, e.getEnemySouls());
-		stmt.setString(5, e.getEnemyWeakness());
-		stmt.setString(6, e.getEnemyResistance());
-		stmt.setString(7, e.getEnemyImmunity());
-		stmt.setString(8, e.getEnemyBoss());
+		stmt.setString(1, e.getEnemyName());
+		stmt.setInt(2, e.getEnemyHP());
+		stmt.setInt(3, e.getEnemySouls());
+		stmt.setString(4, e.getEnemyWeakness());
+		stmt.setString(5, e.getEnemyResistance());
+		stmt.setString(6, e.getEnemyImmunity());
+		stmt.setString(7, e.getEnemyBoss());
 		int numRowsAffected = stmt.executeUpdate();
 		System.out.println("Number of rows affected: " + numRowsAffected);
 	}
@@ -85,27 +84,12 @@ public class Database {
 		e.getEnemyHP();
 	}
 	
-	public boolean deleteEnemy(Enemy e) throws SQLException {
-		String sql = "DELETE FROM Employee WHERE EnemyID = ?";
+	public boolean deleteEnemy(int e) throws SQLException {
+		String sql = "DELETE FROM Enemy WHERE EnemyID = ?";
 		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setInt(1, e.getEnemyID());
+		stmt.setInt(1, e);
 		int numRowsAffected = stmt.executeUpdate();
 		return numRowsAffected > 0;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
