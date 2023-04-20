@@ -42,7 +42,6 @@ public class Company {
 				String name = scan.nextLine();
 				System.out.print("Enter Enemy HP: ");
 				int hp = scan.nextInt();
-				System.out.println();
 				System.out.print("Enter Enemy Souls: ");
 				int souls = scan.nextInt();
 				scan.nextLine();
