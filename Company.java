@@ -27,7 +27,7 @@ public class Company {
 
 				System.out.println("What item type would you like to list?");
 				System.out.println();
-				System.out.println("  Ammuntion, Armor, Boss Soul, Chest Armor");
+				System.out.println("  Ammunition, Armor, Boss Soul, Chest Armor");
 				System.out.println("  Consumable, Covenant, Gauntlets, Helm");
 				System.out.println("  Item, Key Item, Leggings, Miracle");
 				System.out.println("  Multiplayer Item, Ore, Projectile, Pyromancy");
@@ -47,6 +47,21 @@ public class Company {
 				db.query2(letter);
 
 			}else if(menuSelection == 3){
+				System.out.print("What location would you like to see?");
+				System.out.println();
+				System.out.println("Anor Londo, Archdragon Peak, Catacombs of Carthus");
+				System.out.println("Cathedral of the Deep, Cemetary of Ash, Church of Yorshka");
+				System.out.println("Consumed Kings Garden, Farron Keep, Firelink Shrine");
+				System.out.println("Grand Archives, High Wall of Lothric, Irithyll Dungeon");
+				System.out.println("Irithyll of the Boreal Valley, Kiln of the First Flame, Lothric Castle");
+				System.out.println("Painted World of Ariandel, Profaned Capital, Road of Sacrifices");
+				System.out.println("Smouldering Lake, The Dreg Heap, The Ringed City");
+				System.out.println("Undead Settlement, Untended Graves");
+				scan.nextLine();
+				System.out.println();
+				System.out.print("What location would you like to display: ");
+				String input = scan.nextLine();
+				db.query3(input);
 
 			}else if(menuSelection == 4){
 
@@ -95,64 +110,6 @@ public class Company {
 			}
 
 		}while (menuSelection != 10);
-		
-		/* try {
-			String query = "SELECT * FROM Enemy";
-			ResultSet results = db.runQuery(query);
-			
-			ArrayList<Enemy> lst = new ArrayList<>();
-			
-			while(results.next()) {
-				int EnemyID = results.getInt("EnemyID");
-				String EnemyName = results.getString("EnemyName");
-				int EnemyHP = results.getInt("EnemyHP");
-				int EnemySouls = results.getInt("EnemySouls");
-				String EnemyWeakness = results.getString("EnemyWeakness");
-				String EnemyResistance = results.getString("EnemyResistance");
-				String EnemyImmunity = results.getString("EnemyImmunity");
-				String EnemyBoss = results.getString("EnemyBoss");
-
-				Enemy e = new Enemy(EnemyID, EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss);
-				
-				lst.add(e);
-			}
-			
-			for(Enemy e : lst) {
-				System.out.println(e);
-			}
-			
-			ResultSet results = db.enemyLookup(72);
-			if(results.next()) {
-				int EnemyID = results.getInt("EnemyID");
-				String EnemyName = results.getString("EnemyName");
-				int EnemyHP = results.getInt("EnemyHP");
-				int EnemySouls =  results.getInt("EnemySouls");
-				String EnemyWeakness = results.getString("EnemyWeakness");
-				String EnemyResistance = results.getString("EnemyResistance");
-				String EnemyImmunity = results.getString("EnemyImmunity");
-				String EnemyBoss = results.getString("EnemyBoss");
-
-				Enemy e = new Enemy(EnemyID, EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss);
-				
-				
-			 	System.out.println(e.toString());
-			 }
-			
-			 Employee e = new Employee("222-22-2222", 60000.00, "Kim", "Jane", "Smith");
-			 Enemy e = new Enemy(777, "Lenny", 63, 536, "Physical", "Magic", "Fire", "Yes");
-			 db.insertEnemy(e);
-			
-			 System.out.println();
-			
-			 db.updateEmployeeSalary(e, 65000.00);
-			
-			 boolean result = db.deleteEnemy(e);
-			 System.out.println(result);
-			
-		 } catch(SQLException e) {
-			 System.out.println("Something went wrong!");
-			 e.printStackTrace();
-		 } */
 		
 		System.out.println("Shutting down...");
 
