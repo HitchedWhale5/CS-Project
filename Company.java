@@ -24,8 +24,27 @@ public class Company {
 
 			//act on whichever menu item the user selected
 			if(menuSelection == 1){
+
+				System.out.println("What item type would you like to list?");
+				System.out.println();
+				System.out.println("  Ammuntion, Armor, Boss Soul, Chest Armor");
+				System.out.println("  Consumable, Covenant, Gauntlets, Helm");
+				System.out.println("  Item, Key Item, Leggings, Miracle");
+				System.out.println("  Multiplayer Item, Ore, Projectile, Pyromancy");
+				System.out.println("  Ring, Shield, Soul, Tool, Upgrade Material, Weapon");  
+				scan.nextLine();
+				System.out.println();
+				System.out.print("What item type would you like to display: ");
+				String input = scan.nextLine();
+				db.query1(input);
 				
 			}else if(menuSelection == 2){
+
+				scan.nextLine();
+				System.out.print("Enter a letter: ");
+				String letter = scan.nextLine();
+				letter = letter + "%";
+				db.query2(letter);
 
 			}else if(menuSelection == 3){
 
@@ -38,6 +57,7 @@ public class Company {
 			}else if(menuSelection == 7){
 
 				scan.nextLine();
+				int id = 999;
 				System.out.print("Enter Enemy Name: ");
 				String name = scan.nextLine();
 				System.out.print("Enter Enemy HP: ");
@@ -54,7 +74,7 @@ public class Company {
 				System.out.print("Is this enemy a boss: ");
 				String boss = scan.next();
 
-				Enemy e = new Enemy(name, hp, souls, weakness, resistance, immunity, boss);
+				Enemy e = new Enemy(id, name, hp, souls, weakness, resistance, immunity, boss);
 				db.insertEnemy(e);
 
 			}else if(menuSelection == 8){
