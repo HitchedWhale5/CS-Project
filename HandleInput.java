@@ -7,6 +7,8 @@ public class HandleInput {
 
     }
 
+
+
     public static int getMenu(Scanner scan){
 
         int line;
@@ -15,8 +17,8 @@ public class HandleInput {
 
         //Print Menu
         System.out.println("SoulScape Menu: ");
-        System.out.println("1 - <insert query one here>");
-        System.out.println("2 - <insert query two here>");
+        System.out.println("1 - Find all loot by loot type: ");
+        System.out.println("2 - Find all enemies starting with: ");
         System.out.println("3 - <insert query three here");
         System.out.println("4 - <insert query four here>");
         System.out.println("5 - <insert query five here>");
