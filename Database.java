@@ -24,7 +24,7 @@ public class Database {
 	 */
 	
 
-	private String url = "jdbc:sqlite:/D:/UW La Crosse/Junior Year/Spring semester/CS 364/Project/Soulscapel.db";
+	private String url = "jdbc:sqlite:/D:/UW La Crosse/Junior Year/Spring semester/CS 364/Project/Soulscapel.db";;
 	
 	private Connection connection;
 	
@@ -133,6 +133,32 @@ public class Database {
 			System.out.println(EnemyName);
 		}
 		System.out.println();
+	}
+
+	public void query3(String Location) throws SQLException{
+		String sql = "SELECT * FROM Loot JOIN Drops JOIN Enemy JOIN Patrols JOIN Location ON Loot.LootID = Drops.LootID AND Drops.EnemyID = Enemy.EnemyID AND Enemy.EnemyID = Patrols.EnemyID AND Patrols.LocationID = Location.LocationID 	WHERE Location.LocationName = ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, Location);
+		ResultSet results = stmt.executeQuery();
+
+		ArrayList<Loot> lst = new ArrayList<>();
+			
+
+		System.out.println();
+			while(results.next()) {
+				int LootID = results.getInt("LootID");
+				String LootName = results.getString("LootName");
+				String LootType = results.getString("LootType");
+
+				Loot e = new Loot(LootID, LootName, LootType);
+				
+				lst.add(e);
+			}
+			
+			for(Loot e : lst) {
+				System.out.println(e);
+			}
+			System.out.println();
 	}
 
 }
