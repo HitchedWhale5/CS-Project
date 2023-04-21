@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Database {
 
@@ -91,20 +92,47 @@ public class Database {
 		return numRowsAffected > 0;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
+	public void query1(String itemType) throws SQLException{
+		String sql = "SELECT * FROM Loot GROUP BY LootType, LootName, LootID HAVING LootType = ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, itemType);
+		ResultSet results = stmt.executeQuery();
 
+		
+		ArrayList<Loot> lst = new ArrayList<>();
+			
+
+		System.out.println();
+			while(results.next()) {
+				int LootID = results.getInt("LootID");
+				String LootName = results.getString("LootName");
+				String LootType = results.getString("LootType");
+
+				Loot e = new Loot(LootID, LootName, LootType);
+				
+				lst.add(e);
+			}
+			
+			for(Loot e : lst) {
+				System.out.println(e);
+			}
+			System.out.println();
+		
+	}
+
+	public void query2(String letter) throws SQLException{
+		String sql = "Select EnemyID, EnemyName FROM Enemy WHERE EnemyName LIKE ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, letter);
+		ResultSet results = stmt.executeQuery();
+		System.out.println();
+
+		while(results.next()){
+
+			String EnemyName = results.getString("EnemyName");
+			System.out.println(EnemyName);
+		}
+		System.out.println();
+	}
+
+}
