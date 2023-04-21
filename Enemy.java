@@ -1,138 +1,91 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+public class Enemy {
 
-public class Database {
+    private int EnemyID;
+    private String EnemyName;
+    private int EnemyHP;
+    private int EnemySouls;
+    private String EnemyWeakness;
+    private String EnemyResistance; 
+    private String EnemyImmunity;
+    private String EnemyBoss; 
 
-	/*
-	 * load SQL driver (JDBC: Java Database Connector/ODBC)
-	 * - add to build path
-	 * 
-	 * set up our database (script)
-	 * 
-	 * connect to the database
-	 * 
-	 * insert/modify/delete data (Java)
-	 * 
-	 * query data (Java)
-	 * 
-	 * disconnect from the database
-	 * 
-	 */
-	
+    public Enemy(int EnemyID, String EnemyName, int EnemyHP, int EnemySouls, String EnemyWeakness, String EnemyResistance, String EnemyImmunity, String EnemyBoss){
+        super();
+        this.EnemyID = EnemyID;
+        this.EnemyName = EnemyName;
+        this.EnemyHP = EnemyHP;
+        this.EnemySouls = EnemySouls;
+        this.EnemyWeakness = EnemyWeakness;
+        this.EnemyResistance = EnemyResistance;
+        this.EnemyImmunity = EnemyImmunity;
+        this.EnemyBoss = EnemyBoss;
+    }
 
-	private String url = "jdbc:sqlite:/D:/UW La Crosse/Junior Year/Spring semester/CS 364/Project/Soulscapel.db";
-	
-	private Connection connection;
-	
-	public Database() {
-		
-	}
-	
-	public void connect() {
-		try {
-			connection = DriverManager.getConnection(url);
-		} catch (SQLException e) {
-			System.out.println("Cannot connect!");
-		}
-	}
-	
-	public void disconnect() {
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			System.out.println("Cannot disconnect!");
-		}
-	}
-	
-	public ResultSet runQuery(String query) throws SQLException {
-		PreparedStatement stmt = connection.prepareStatement(query);
-		ResultSet results = stmt.executeQuery();
-		return results;
-	}
-	
-	public ResultSet enemyLookup(int EnemyID) throws SQLException {
-		String query = "SELECT * FROM Enemy WHERE EnemyID = ?";
-		PreparedStatement stmt = connection.prepareStatement(query);
-		stmt.setInt(1, EnemyID);
-		ResultSet results = stmt.executeQuery();
-		return results;
-	}
+    public String getEnemyName(){
+        return EnemyName;
+    }
 
-	public void insertEnemy(Enemy e) throws SQLException {
-		String sql = "INSERT INTO Enemy (EnemyName, EnemyHP, EnemySouls, EnemyWeakness, EnemyResistance, EnemyImmunity, EnemyBoss) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setString(1, e.getEnemyName());
-		stmt.setInt(2, e.getEnemyHP());
-		stmt.setInt(3, e.getEnemySouls());
-		stmt.setString(4, e.getEnemyWeakness());
-		stmt.setString(5, e.getEnemyResistance());
-		stmt.setString(6, e.getEnemyImmunity());
-		stmt.setString(7, e.getEnemyBoss());
-		int numRowsAffected = stmt.executeUpdate();
-		System.out.println("Number of rows affected: " + numRowsAffected);
-	}
-	
-	public void updateEnemyHP(int enemyID, int EnemyHP) throws SQLException {
-		String sql = "UPDATE Enemy SET EnemyHP = ? WHERE EnemyID = ?";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setInt(1, EnemyHP);
-		stmt.setInt(2, enemyID);
-		stmt.executeUpdate();
-	}
-	
-	public boolean deleteEnemy(int e) throws SQLException {
-		String sql = "DELETE FROM Enemy WHERE EnemyID = ?";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setInt(1, e);
-		int numRowsAffected = stmt.executeUpdate();
-		return numRowsAffected > 0;
-	}
-	
-	public void query1(String itemType) throws SQLException{
-		String sql = "SELECT * FROM Loot GROUP BY LootType, LootName, LootID HAVING LootType = ?";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setString(1, itemType);
-		ResultSet results = stmt.executeQuery();
+    public void setEnemyName(String EnemyName){
+        this.EnemyName = EnemyName;
+    }
 
-		
-		ArrayList<Loot> lst = new ArrayList<>();
-			
+    public int getEnemyHP(){
+        return EnemyHP;
+    }
 
-		System.out.println();
-			while(results.next()) {
-				int LootID = results.getInt("LootID");
-				String LootName = results.getString("LootName");
-				String LootType = results.getString("LootType");
+    public void setEnemyHP(int EnemyHP){
+        this.EnemyHP = EnemyHP;
+    }
 
-				Loot e = new Loot(LootID, LootName, LootType);
-				
-				lst.add(e);
-			}
-			
-			for(Loot e : lst) {
-				System.out.println(e);
-			}
-			System.out.println();
-		
-	}
+    public int getEnemySouls(){
+        return EnemySouls;
+    }
 
-	public void query2(String letter) throws SQLException{
-		String sql = "Select EnemyID, EnemyName FROM Enemy WHERE EnemyName LIKE ?";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setString(1, letter);
-		ResultSet results = stmt.executeQuery();
-		System.out.println();
+    public void setEnemySouls(int EnemySouls){
+        this.EnemySouls = EnemySouls;
+    }
 
-		while(results.next()){
+    public String getEnemyWeakness(){
+        return EnemyWeakness;
+    }
 
-			String EnemyName = results.getString("EnemyName");
-			System.out.println(EnemyName);
-		}
-		System.out.println();
-	}
+    public void setEnemyWeakness(String EnemyWeakness){
+        this.EnemyWeakness = EnemyWeakness;
+    }
 
+    public String getEnemyResistance(){
+        return EnemyResistance;
+    }
+
+    public void setEnemyResistance(String EnemyResistance){
+        this.EnemyResistance = EnemyResistance;
+    }
+
+    public String getEnemyImmunity(){
+        return EnemyImmunity;
+    }
+
+    public void setEnemyImmunity(String EnemyImmunity){
+        this.EnemyImmunity = EnemyImmunity;
+    }
+
+    public String getEnemyBoss(){
+        return EnemyBoss;
+    }
+
+    public void setEnemyBoss(String EnemyBoss){
+        this.EnemyBoss = EnemyBoss;
+    }
+
+    public int getEnemyID(){
+        return EnemyID;
+    }
+
+    public String toString(){
+        return "Enemy [EnemyID = " + EnemyID + ", EnemyName = " + EnemyName + ", EnemyHP = " + EnemyHP + ", EnemySouls = " 
+            + EnemySouls + ", EnemyWeakness = " + EnemyWeakness + ", EnemyResistance = " + EnemyResistance + ", EnemyImmunity = "
+            + EnemyImmunity + ", EnemyBoss = " + EnemyBoss + "]";
+    }
+    
+    
 }
