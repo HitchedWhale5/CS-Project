@@ -27,11 +27,11 @@ public class Company {
 
 				System.out.println("What item type would you like to list?");
 				System.out.println();
-				System.out.println("  Ammunition, Armor, Boss Soul, Chest Armor");
-				System.out.println("  Consumable, Covenant, Gauntlets, Helm");
-				System.out.println("  Item, Key Item, Leggings, Miracle");
-				System.out.println("  Multiplayer Item, Ore, Projectile, Pyromancy");
-				System.out.println("  Ring, Shield, Soul, Tool, Upgrade Material, Weapon");  
+				System.out.println("  [Ammunition] [Armor] [Boss Soul] [Chest Armor]");
+				System.out.println("  [Consumable] [Covenant] [Gauntlets] [Helm]");
+				System.out.println("  [Item] [Key Item] [Leggings] [Miracle]");
+				System.out.println("  [Multiplayer Item] [Ore] [Projectile] [Pyromancy]");
+				System.out.println("  [Ring] [Shield] [Soul] [Tool] [Upgrade Material] [Weapon]");  
 				scan.nextLine();
 				System.out.println();
 				System.out.print("What item type would you like to display: ");
@@ -49,14 +49,14 @@ public class Company {
 			}else if(menuSelection == 3){
 				System.out.print("What location would you like to see?");
 				System.out.println();
-				System.out.println("Anor Londo, Archdragon Peak, Catacombs of Carthus");
-				System.out.println("Cathedral of the Deep, Cemetary of Ash, Church of Yorshka");
-				System.out.println("Consumed Kings Garden, Farron Keep, Firelink Shrine");
-				System.out.println("Grand Archives, High Wall of Lothric, Irithyll Dungeon");
-				System.out.println("Irithyll of the Boreal Valley, Kiln of the First Flame, Lothric Castle");
-				System.out.println("Painted World of Ariandel, Profaned Capital, Road of Sacrifices");
-				System.out.println("Smouldering Lake, The Dreg Heap, The Ringed City");
-				System.out.println("Undead Settlement, Untended Graves");
+				System.out.println("[Anor Londo] [Archdragon Peak] [Catacombs of Carthus]");
+				System.out.println("[Cathedral of the Deep] [Cemetary of Ash] [Church of Yorshka]");
+				System.out.println("[Consumed Kings Garden] [Farron Keep] [Firelink Shrine]");
+				System.out.println("[Grand Archives] [High Wall of Lothric] [Irithyll Dungeon]");
+				System.out.println("[Irithyll of the Boreal Valley] [Kiln of the First Flame] [Lothric Castle]");
+				System.out.println("[Painted World of Ariandel] [Profaned Capital] [Road of Sacrifices]");
+				System.out.println("[Smouldering Lake] [The Dreg Heap] [The Ringed City]");
+				System.out.println("[Undead Settlement] [Untended Graves]");
 				scan.nextLine();
 				System.out.println();
 				System.out.print("What location would you like to display: ");
@@ -64,10 +64,39 @@ public class Company {
 				db.query3(input);
 
 			}else if(menuSelection == 4){
+				
+				System.out.print("List desired amount of items: ");
+				int input = scan.nextInt();
+				db.query4(input);
+
 
 			}else if(menuSelection == 5){
 
+				System.out.print("What locations would you like to compare?");
+				System.out.println();
+				System.out.println("[Anor Londo] [Archdragon Peak] [Catacombs of Carthus]");
+				System.out.println("[Cathedral of the Deep] [Cemetary of Ash] [Church of Yorshka]");
+				System.out.println("[Consumed Kings Garden] [Farron Keep] [Firelink Shrine]");
+				System.out.println("[Grand Archives] [High Wall of Lothric] [Irithyll Dungeon]");
+				System.out.println("[Irithyll of the Boreal Valley] [Kiln of the First Flame] [Lothric Castle]");
+				System.out.println("[Painted World of Ariandel] [Profaned Capital] [Road of Sacrifices]");
+				System.out.println("[Smouldering Lake] [The Dreg Heap] [The Ringed City]");
+				System.out.println("[Undead Settlement] [Untended Graves]");
+				scan.nextLine();
+				System.out.println();
+				System.out.print("Enter first location: ");
+				String first = scan.nextLine();
+				System.out.print("Enter Second Location: ");
+				String second = scan.nextLine();
+				System.out.println();
+				db.query5(first, second);
+				System.out.println();
+
+
+
 			}else if(menuSelection == 6){
+
+				
 
 			}else if(menuSelection == 7){
 
