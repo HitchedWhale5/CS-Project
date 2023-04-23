@@ -6,24 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Database {
-
-	/*
-	 * load SQL driver (JDBC: Java Database Connector/ODBC)
-	 * - add to build path
-	 * 
-	 * set up our database (script)
-	 * 
-	 * connect to the database
-	 * 
-	 * insert/modify/delete data (Java)
-	 * 
-	 * query data (Java)
-	 * 
-	 * disconnect from the database
-	 * 
-	 */
 	
-
 	private String url = "jdbc:sqlite:/D:/UW La Crosse/Junior Year/Spring semester/CS 364/Project/Soulscapel.db";;
 	
 	private Connection connection;
@@ -98,23 +81,14 @@ public class Database {
 		stmt.setString(1, itemType);
 		ResultSet results = stmt.executeQuery();
 
-		
-		ArrayList<Loot> lst = new ArrayList<>();
-			
 
 		System.out.println();
+		System.out.println("Results: ");
+		System.out.println();
 			while(results.next()) {
-				int LootID = results.getInt("LootID");
 				String LootName = results.getString("LootName");
-				String LootType = results.getString("LootType");
-
-				Loot e = new Loot(LootID, LootName, LootType);
+				System.out.println(LootName);
 				
-				lst.add(e);
-			}
-			
-			for(Loot e : lst) {
-				System.out.println(e);
 			}
 			System.out.println();
 		
@@ -127,6 +101,9 @@ public class Database {
 		ResultSet results = stmt.executeQuery();
 		System.out.println();
 
+		System.out.println();
+		System.out.println("Results: ");
+		System.out.println();
 		while(results.next()){
 
 			String EnemyName = results.getString("EnemyName");
@@ -136,29 +113,94 @@ public class Database {
 	}
 
 	public void query3(String Location) throws SQLException{
-		String sql = "SELECT * FROM Loot JOIN Drops JOIN Enemy JOIN Patrols JOIN Location ON Loot.LootID = Drops.LootID AND Drops.EnemyID = Enemy.EnemyID AND Enemy.EnemyID = Patrols.EnemyID AND Patrols.LocationID = Location.LocationID 	WHERE Location.LocationName = ?";
+		String sql = "SELECT * FROM Loot JOIN Drops JOIN Enemy JOIN Patrols JOIN Location ON Loot.LootID = Drops.LootID AND Drops.EnemyID = Enemy.EnemyID AND Enemy.EnemyID = Patrols.EnemyID AND Patrols.LocationID = Location.LocationID 	WHERE Location.LocationName = ? GROUP BY Loot.LootID ORDER BY Loot.LootType, Loot.LootName";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setString(1, Location);
 		ResultSet results = stmt.executeQuery();
-
-		ArrayList<Loot> lst = new ArrayList<>();
 			
-
+		System.out.println();
+		System.out.println("Results: ");
+		System.out.println();
 		System.out.println();
 			while(results.next()) {
-				int LootID = results.getInt("LootID");
 				String LootName = results.getString("LootName");
 				String LootType = results.getString("LootType");
+				System.out.print(LootName);
+				for(int i = 0; i < (30-(LootName.length()));i++){System.out.print(" ");}
+				System.out.print( "[" + LootType + "]");
+				System.out.println();
 
-				Loot e = new Loot(LootID, LootName, LootType);
-				
-				lst.add(e);
 			}
 			
-			for(Loot e : lst) {
-				System.out.println(e);
-			}
+		
 			System.out.println();
 	}
+
+	public void query4(int amount) throws SQLException{
+		String sql = "SELECT EnemyID, EnemyName FROM Enemy NATURAL JOIN Drops NATURAL JOIN Loot GROUP BY EnemyID, EnemyName HAVING count(*) >= ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setInt(1, amount);
+		ResultSet results = stmt.executeQuery();
+
+		
+		System.out.println();
+		System.out.println("Results: ");
+		System.out.println();
+		while(results.next()){
+
+			String EnemyName = results.getString("EnemyName");
+			System.out.println(EnemyName);
+		}
+		System.out.println();
+	}
+
+	public void query5(String first, String second) throws SQLException{
+		String sql = "SELECT EnemyID, EnemyName FROM Enemy NATURAL JOIN Patrols NATURAL JOIN Location WHERE LocationName = ? INTERSECT SELECT EnemyID, EnemyName FROM Enemy NATURAL JOIN Patrols NATURAL JOIN Location WHERE LocationName = ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setString(1, first);
+		stmt.setString(2, second);
+		ResultSet results = stmt.executeQuery();
+
+		System.out.println();
+		System.out.println("Results: ");
+		System.out.println();
+		while(results.next()){
+
+			String EnemyName = results.getString("EnemyName");
+			System.out.println(EnemyName);
+		}
+		System.out.println();
+
+	}
+
+	public void query6(String Location) throws SQLException {
+
+        String sql = "SELECT Location.LocationName AS LocationName, count(*) AS EnemyCount FROM Enemy JOIN Patrols JOIN Location ON Enemy.EnemyID = Patrols.EnemyID AND Patrols.LocationID = Location.LocationID GROUP BY Location.LocationName HAVING count(*) > (SELECT DISTINCT count(*) FROM Enemy JOIN Patrols JOIN Location ON Enemy.EnemyID = Patrols.EnemyID AND Patrols.LocationID = Location.LocationID WHERE Location.LocationName = ?)";
+
+        PreparedStatement stmt = connection.prepareStatement(sql);
+
+        stmt.setString(1, Location);
+
+        ResultSet results = stmt.executeQuery();
+
+        System.out.println();
+
+        while(results.next()){
+
+ 
+
+            String LocationName = results.getString("LocationName");
+
+            String EnemyCount = results.getString("EnemyCount");
+
+            System.out.println("Location Name: " + LocationName + "\n" + "Unique Enemy Count: " + EnemyCount + "\n");
+
+        }
+
+        System.out.println();
+
+ 
+
+    }
 
 }
