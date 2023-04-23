@@ -96,7 +96,39 @@ public class Company {
 
 			}else if(menuSelection == 6){
 
-				
+				System.out.print("What location would you like to input?");
+
+                System.out.println();
+
+                System.out.println("[Anor Londo], [Archdragon Peak], [Catacombs of Carthus],");
+
+                System.out.println("[Cathedral of the Deep], [Cemetary of Ash], [Church of Yorshka],");
+
+                System.out.println("[Consumed Kings Garden], [Farron Keep], [Firelink Shrine],");
+
+                System.out.println("[Grand Archives], [High Wall of Lothric], [Irithyll Dungeon],");
+
+                System.out.println("[Irithyll of the Boreal Valley], [Kiln of the First Flame], [Lothric Castle],");
+
+                System.out.println("[Painted World of Ariandel], [Profaned Capital], [Road of Sacrifices],");
+
+                System.out.println("[Smouldering Lake], [The Dreg Heap], [The Ringed City],");
+
+                System.out.println("[Undead Settlement], [Untended Graves]");
+
+                scan.nextLine();
+
+                System.out.println();
+
+                System.out.print("Input location: ");
+
+                String input = scan.nextLine();
+
+                db.query6(input);
+
+                // find all locations that have more unique enemies than an inputted location's amount of unique enemies
+
+
 
 			}else if(menuSelection == 7){
 
