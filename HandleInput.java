@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class HandleInput {
@@ -14,17 +13,19 @@ public class HandleInput {
         int selection;
 
         //Print Menu
+        System.out.println("---------------------------------------------------------------------------");
         System.out.println("SoulScape Menu: ");
-        System.out.println("1 - Find all loot by loot type: ");
-        System.out.println("2 - Find all enemies starting with: ");
-        System.out.println("3 - Find all loot that can be found at a desired location: ");
-        System.out.println("4 - <insert query four here>");
-        System.out.println("5 - <insert query five here>");
-        System.out.println("6 - <insert query six here>");
+        System.out.println("1 - List all loot by given loot type: ");
+        System.out.println("2 - List all enemies starting with: ");
+        System.out.println("3 - List all loot that can be found at a desired location: ");
+        System.out.println("4 - List all enemies that drop a given amount of items or more: ");
+        System.out.println("5 - List all overlapping enemies between two given locations: ");
+        System.out.println("6 - List all locations that have more unique enemies then given location: ");
         System.out.println("7 - Add Enemy");
         System.out.println("8 - Update Enemy Health");
         System.out.println("9 - Delete Enemy");
         System.out.println("10 - Exit Program");
+        System.out.println("---------------------------------------------------------------------------");
 
         do {
                 //Print prompt
